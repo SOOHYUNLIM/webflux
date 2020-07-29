@@ -16,7 +16,9 @@ public class TestHandler {
     private final TestService testService;
 
     public Mono<ServerResponse> insert(ServerRequest request) {
-        Mono<Test> result = testService.insert(new Test());
+        Test test = new Test();
+        test.setTitle("title1");
+        Mono<Test> result = testService.insert(test);
         return ServerResponse.ok().body(result, Test.class);
     }
 

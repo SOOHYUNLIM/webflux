@@ -1,6 +1,8 @@
 package com.study.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
@@ -8,10 +10,12 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @Table("Test")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Test {
 
     @Id
-    private Long no;
+    private Long id;
 
     private String title;
 }

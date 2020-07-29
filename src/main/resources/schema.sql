@@ -1,4 +1,1 @@
-CREATE TABLE IF NOT EXISTS Test(
-    no serial primary key,
-    title varchar(255)
-)
+CREATE TABLE IF NOT EXISTS test (id SERIAL PRIMARY KEY, title VARCHAR(255))
