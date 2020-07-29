@@ -1,5 +1,6 @@
 package com.study.handler;
 
+import com.study.dto.TestDto;
 import com.study.entity.Test;
 import com.study.service.TestService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class TestHandler {
 
     public Mono<ServerResponse> insert(ServerRequest request) {
         Test test = new Test();
-        test.setTitle("title1");
+        test.setTitle(request.queryParam("title").orElseGet(()-> "Default Title..."));
         Mono<Test> result = testService.insert(test);
         return ServerResponse.ok().body(result, Test.class);
     }
