@@ -8,7 +8,7 @@ public interface TestService {
 
     Mono<Test> insert(Test test);
 
-    Mono<Test> findByNo(Long no);
+    Mono<Test> findById(Long id);
 
     Flux<Test> findAll();
 }

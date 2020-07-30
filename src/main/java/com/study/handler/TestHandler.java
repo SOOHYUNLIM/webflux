@@ -2,6 +2,7 @@ package com.study.handler;
 
 import com.study.dto.TestDto;
 import com.study.entity.Test;
+import com.study.service.SubService;
 import com.study.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,8 @@ public class TestHandler {
 
     private final TestService testService;
 
+    private final SubService subService;
+
     public Mono<ServerResponse> insert(ServerRequest request) {
         Test test = new Test(request.queryParam("title").orElseGet(()-> "Default Title..."));
         Mono<Test> result = testService.insert(test);
@@ -28,7 +31,11 @@ public class TestHandler {
     }
 
     public Mono<ServerResponse> findById(ServerRequest request) {
-        Mono<Test> result = testService.findByNo(Long.valueOf(request.pathVariable("id")));
+        Mono<Test> result = testService.findById(Long.valueOf(request.pathVariable("id")))
+                .flatMap(test ->
+                    Mono.just(test).zipWith(subService.findByTestId(test.getId()).collectList())
+                        .map(tupla -> tupla.getT1().withSubs(tupla.getT2()))
+                );
         return ServerResponse.ok().body(result, Test.class);
     }
 }

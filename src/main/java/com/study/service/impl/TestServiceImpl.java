@@ -20,8 +20,8 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Mono<Test> findByNo(Long no) {
-        return testRepository.findByIdJoinSub(no);
+    public Mono<Test> findById(Long id) {
+        return testRepository.findById(id);
     }
 
     @Override
