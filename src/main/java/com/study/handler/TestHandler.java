@@ -17,14 +17,18 @@ public class TestHandler {
     private final TestService testService;
 
     public Mono<ServerResponse> insert(ServerRequest request) {
-        Test test = new Test();
-        test.setTitle(request.queryParam("title").orElseGet(()-> "Default Title..."));
+        Test test = new Test(request.queryParam("title").orElseGet(()-> "Default Title..."));
         Mono<Test> result = testService.insert(test);
         return ServerResponse.ok().body(result, Test.class);
     }
 
     public Mono<ServerResponse> getAll(ServerRequest request) {
         Flux<Test> result = testService.findAll();
+        return ServerResponse.ok().body(result, Test.class);
+    }
+
+    public Mono<ServerResponse> findById(ServerRequest request) {
+        Mono<Test> result = testService.findByNo(Long.valueOf(request.pathVariable("id")));
         return ServerResponse.ok().body(result, Test.class);
     }
 }

@@ -21,7 +21,7 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Mono<Test> findByNo(Long no) {
-        return testRepository.findById(no);
+        return testRepository.findByIdJoinSub(no);
     }
 
     @Override

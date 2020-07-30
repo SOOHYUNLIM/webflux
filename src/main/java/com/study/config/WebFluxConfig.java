@@ -1,5 +1,6 @@
 package com.study.config;
 
+import com.study.handler.SubHandler;
 import com.study.handler.TestHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,13 @@ public class WebFluxConfig {
     public RouterFunction<ServerResponse> testRoutes(TestHandler testHandler) {
         return RouterFunctions.nest(path("/test"),
                 RouterFunctions.route(GET("/insert"), testHandler::insert)
-                        .andRoute(GET("/all"), testHandler::getAll));
+                        .andRoute(GET("/all"), testHandler::getAll)
+                        .andRoute(GET("/get/{id}"), testHandler::findById));
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> subRoutes(SubHandler subHandler) {
+        return RouterFunctions.nest(path("/sub"),
+                RouterFunctions.route(GET("/insert"), subHandler::insert));
     }
 }
