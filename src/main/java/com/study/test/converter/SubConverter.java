@@ -1,6 +1,6 @@
-package com.study.converter;
+package com.study.test.converter;
 
-import com.study.entity.Sub;
+import com.study.test.entity.Sub;
 import io.r2dbc.spi.Row;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;

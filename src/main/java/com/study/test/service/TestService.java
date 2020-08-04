@@ -1,6 +1,6 @@
-package com.study.service;
+package com.study.test.service;
 
-import com.study.entity.Test;
+import com.study.test.entity.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

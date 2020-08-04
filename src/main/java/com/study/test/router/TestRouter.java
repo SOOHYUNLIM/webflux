@@ -1,7 +1,7 @@
-package com.study.config;
+package com.study.test.router;
 
-import com.study.handler.SubHandler;
-import com.study.handler.TestHandler;
+import com.study.test.handler.SubHandler;
+import com.study.test.handler.TestHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.EnableWebFlux;
@@ -14,7 +14,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 @EnableWebFlux
 @Configuration
-public class WebFluxConfig {
+public class TestRouter {
 
     @Bean
     public RouterFunction<ServerResponse> testRoutes(TestHandler testHandler) {

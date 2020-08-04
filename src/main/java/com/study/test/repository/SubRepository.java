@@ -1,6 +1,6 @@
-package com.study.repository;
+package com.study.test.repository;
 
-import com.study.entity.Sub;
+import com.study.test.entity.Sub;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import reactor.core.publisher.Flux;
 

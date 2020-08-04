@@ -1,9 +1,8 @@
-package com.study.handler;
+package com.study.test.handler;
 
-import com.study.dto.TestDto;
-import com.study.entity.Test;
-import com.study.service.SubService;
-import com.study.service.TestService;
+import com.study.test.entity.Test;
+import com.study.test.service.SubService;
+import com.study.test.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
