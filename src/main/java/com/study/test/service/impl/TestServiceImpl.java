@@ -1,5 +1,6 @@
 package com.study.test.service.impl;
 
+import com.study.common.annotation.ReactiveCacheable;
 import com.study.test.entity.Test;
 import com.study.test.repository.TestRepository;
 import com.study.test.service.TestService;
@@ -20,11 +21,13 @@ public class TestServiceImpl implements TestService {
         return testRepository.save(test);
     }
 
+    @ReactiveCacheable
     @Override
     public Mono<Test> findById(Long id) {
         return testRepository.findById(id);
     }
 
+    @ReactiveCacheable
     @Override
     public Flux<Test> findAll() {
         return testRepository.findAll();

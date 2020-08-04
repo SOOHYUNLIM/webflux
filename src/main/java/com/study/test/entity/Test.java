@@ -3,17 +3,16 @@ package com.study.test.entity;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.io.Serializable;
 import java.util.List;
 
-@RedisHash("test")
 @Getter
 @Table("Test")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Test {
+public class Test implements Serializable {
 
     @Id
     private Long id;
