@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Aspect
@@ -53,9 +54,14 @@ public class RedisAspect {
 
         //결국 return 값이 캐쉬된다. cache name 지정 시 해당 name 사용 - 없을 시 파라미터 값을 키로 만든다
         if(rawType.equals(Mono.class)) {
-            return reactiveRedisOperations.opsForValue().getAndSet(key, proceedingJoinPoint.proceed());
+            return reactiveRedisOperations.opsForValue().get(key).switchIfEmpty(test(key, proceedingJoinPoint.proceed()));
         } else {
             return reactiveRedisOperations.opsForValue().getAndSet(key, proceedingJoinPoint.proceed());
         }
+    }
+
+    private Mono<?> test(String key, Object value) {
+        reactiveRedisOperations.opsForValue().set(key, value);
+        return (Mono<?>) value;
     }
 }
